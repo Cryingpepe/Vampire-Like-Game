@@ -24,7 +24,7 @@ public class HUD : MonoBehaviour
         {
             case InfoType.Exp:
                 float currentExp = GameManager.instance.exp;
-                float nextExp = GameManager.instance.nextExp[GameManager.instance.level];
+                float nextExp = GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)];
                 mySlider.value = currentExp / nextExp; // Update the slider value based on current and next experience
                 break;
 

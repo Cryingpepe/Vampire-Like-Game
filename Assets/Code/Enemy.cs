@@ -28,6 +28,9 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         if (!isAlive || animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
         {
             return; // Skip movement if the enemy is not alive or currently in the hit animation
@@ -41,6 +44,9 @@ public class Enemy : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         if (!isAlive)
         {
             return;

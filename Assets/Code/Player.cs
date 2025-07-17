@@ -24,17 +24,24 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
+        if (!GameManager.instance.isLive)
+            return;
     }
 
     void FixedUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         Vector2 nextVector = inputVector.normalized * speed * Time.fixedDeltaTime; // Calculate the next position based on input and speed
         rigid.MovePosition(rigid.position + nextVector); // Move the Rigidbody2D to the new position
     }
 
     void LateUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         animator.SetFloat("Speed", inputVector.magnitude); // Set the animator parameter based on the magnitude of inputVector
 
         if (inputVector.x != 0)
@@ -45,6 +52,9 @@ public class Player : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         inputVector = value.Get<Vector2>();
     }
 }
