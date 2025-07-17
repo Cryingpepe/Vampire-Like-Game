@@ -27,3 +27,4 @@ MonoBehaviour:
   - 2
   levelCount: 0100000001000000020000000300000004000000
   projectile: {fileID: 3933702550227933156, guid: 0c8601eed28688e4094b57575a8d1b41, type: 3}
+  hand: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
