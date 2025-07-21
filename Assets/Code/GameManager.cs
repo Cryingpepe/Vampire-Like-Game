@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public float maxGameTime = 20f; // Maximum game time in seconds
 
     [Header("Player information")]
+    public int playerID; // Unique identifier for the player
     public float health;
     public float maxHealth = 100f; // Maximum health of the player
     public int level;
@@ -34,11 +35,14 @@ public class GameManager : MonoBehaviour
         instance = this; // Ensure there's only one instance of GameManager
     }
 
-    public void GameStart()
+    public void GameStart(int id)
     {
+        playerID = id; // Set the player ID
         health = maxHealth; // Initialize player's health to maximum health
 
-        UILevelUp.Select(0);
+        player.gameObject.SetActive(true); // Activate the player object
+
+        UILevelUp.Select(playerID % 2); // Initialize the level-up UI with the player ID
         Resume(); // Start the game by setting isLive to true and resuming time
     }
 
