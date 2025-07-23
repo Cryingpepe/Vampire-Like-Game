@@ -87,6 +87,8 @@ public class Enemy : MonoBehaviour
         if (health > 0)
         {
             animator.SetTrigger("Hit"); // Trigger the hit animation
+
+            AudioManager.instance.PlaySFX(AudioManager.SFX.Hit); // Play the hit sound effect
         }
         else
         {
@@ -98,6 +100,11 @@ public class Enemy : MonoBehaviour
 
             GameManager.instance.kill++; // Increment the kill count in the GameManager
             GameManager.instance.GetExp(); // Call the GetExp method to award experience points
+
+            if (GameManager.instance.isLive)
+            {
+                AudioManager.instance.PlaySFX(AudioManager.SFX.Dead); // Play the death sound effect
+            }
         }
     }
 

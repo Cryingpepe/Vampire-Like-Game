@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
 
         UILevelUp.Select(playerID % 2); // Initialize the level-up UI with the player ID
         Resume(); // Start the game by setting isLive to true and resuming time
+   
+        AudioManager.instance.PlayBGM(true); // Start playing background music
+        AudioManager.instance.PlaySFX(AudioManager.SFX.Select); // Start playing select music
     }
 
     public void GameOver()
@@ -60,6 +63,9 @@ public class GameManager : MonoBehaviour
         UIresult.gameObject.SetActive(true); // Activate the game over UI
         UIresult.Lose(); // Show the "You Lose" title
         Stop(); // Stop the game
+
+        AudioManager.instance.PlayBGM(false); // Stop playing background music
+        AudioManager.instance.PlaySFX(AudioManager.SFX.Lose); // Play the lose sound effect
     }
 
     public void GameVictory()
@@ -77,6 +83,9 @@ public class GameManager : MonoBehaviour
         UIresult.gameObject.SetActive(true); // Activate the game over UI
         UIresult.Win(); // Show the "You Win" title
         Stop(); // Stop the game
+
+        AudioManager.instance.PlayBGM(false); // Stop playing background music
+        AudioManager.instance.PlaySFX(AudioManager.SFX.Win); // Play the win sound effect
     }
 
     public void GameRestart()

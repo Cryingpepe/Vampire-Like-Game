@@ -16,12 +16,16 @@ public class LevelUp : MonoBehaviour
         Next(); // Show the next set of items
         rectTransform.localScale = Vector3.one;
         GameManager.instance.Stop();
+        AudioManager.instance.PlaySFX(AudioManager.SFX.LevelUp); // Play the level-up sound effect
+        AudioManager.instance.EffectBGM(true); // Enable the effect BGM
     }
 
     public void Hide()
     {
         rectTransform.localScale = Vector3.zero;
         GameManager.instance.Resume();
+        AudioManager.instance.PlaySFX(AudioManager.SFX.Select); // Play the select sound effect
+        AudioManager.instance.EffectBGM(false); // Disable the effect BGM
     }
 
     public void Select(int index)

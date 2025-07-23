@@ -89,6 +89,8 @@ public class AchiveManager : MonoBehaviour
     {
         UINotice.SetActive(true); // Show the notice UI
 
+        AudioManager.instance.PlaySFX(AudioManager.SFX.LevelUp); // Play the level-up sound effect
+
         yield return wait; // Wait for 5 seconds
         
         UINotice.SetActive(false); // Hide the notice UI
