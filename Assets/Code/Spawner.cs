@@ -4,6 +4,8 @@ public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public SpawnData[] spawnData; // Array to hold spawn data for different enemy types
+    public float levelTime; // Time interval for spawning enemies
+
     int level;
     float timer;
 
@@ -11,6 +13,7 @@ public class Spawner : MonoBehaviour
     void Awake()
     {
         spawnPoints = GetComponentsInChildren<Transform>();
+        levelTime = GameManager.instance.maxGameTime / spawnData.Length; // Calculate the time interval for each level based on the total game time and number of spawn data entries
     }
 
     void Update()
@@ -19,7 +22,7 @@ public class Spawner : MonoBehaviour
             return;
 
         timer += Time.deltaTime; // Increment the timer by the time since the last frame
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), spawnData.Length - 1);
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), spawnData.Length - 1);
 
         if (timer > spawnData[level].spawnTime)
         {

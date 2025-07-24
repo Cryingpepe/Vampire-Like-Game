@@ -115,7 +115,7 @@ public class Weapon : MonoBehaviour
             Vector3 rotationVector = Vector3.forward * 360 * index / count;
             bullet.Rotate(rotationVector);
             bullet.Translate(bullet.up * 1.5f, Space.World);
-            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); // Initialize the bullet with damage and a per value
+            bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); // Initialize the bullet with damage and a per value
         }
     }
 
