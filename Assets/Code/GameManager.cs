@@ -27,12 +27,14 @@ public class GameManager : MonoBehaviour
     public PoolManager poolManager;
     public LevelUp UILevelUp;
     public Result UIresult;
+    public Transform UIJoyStick;
     public GameObject enemyCleaner;
 
 
     void Awake()
     {
         instance = this; // Ensure there's only one instance of GameManager
+        Application.targetFrameRate = 60; // Set the target frame rate for the game
     }
 
     public void GameStart(int id)
@@ -93,6 +95,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0); // Reload the current scene to restart the game
     }
 
+    public void GameQuit()
+    {
+        Application.Quit(); // Quit the application
+    }
+
     void Update()
     {
         if (!isLive)
@@ -127,11 +134,13 @@ public class GameManager : MonoBehaviour
         isLive = false;
         Time.timeScale = 0;
         
+        UIJoyStick.localScale = Vector3.zero; // Hide the joystick UI
     }
-    
+
     public void Resume()
     {
         isLive = true;
         Time.timeScale = 1;
+        UIJoyStick.localScale = Vector3.one; // Show the joystick UI
     }
 }
